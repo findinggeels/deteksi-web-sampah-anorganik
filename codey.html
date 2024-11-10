@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metode Unggah Gambar</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="codey.js"></script> <!-- Make sure this file name matches your JavaScript file -->
+    <link rel="stylesheet" href="codey.css">
+    <style>
+        /* Basic styling */
+        #resultContainer {
+            display: none;
+            margin-top: 20px;
+        }
+        #output img {
+            max-width: 100%;
+        }
+        .bttn {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            display: inline-block;
+            background-color: #f0f0f0;
+        }
+        .bttn.active {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .input-group {
+            margin: 10px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Hide specific elements */
+        #url, 
+        #confidence, 
+        #overlap, 
+        #jsonButton, 
+        #fileMock, 
+        #fileSelectionContainer,
+        #method [data-value="url"],
+        #labels, /* Hide Labels (On/Off) section */
+        #stroke, /* Hide Stroke section */
+        #imageOptions label { /* Hide Labels and Stroke titles */
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Deteksi Objek Metode Post (Uanggah Gambar)</h1>
+
+    <form id="inputForm">
+        <!-- Hidden elements due to CSS above -->
+        <div class="input-group" style="display: none;">
+            <label for="url">Image URL:</label>
+            <input type="text" id="url" placeholder="Enter image URL">
+        </div>
+
+        <div class="input-group" id="fileSelectionContainer" style="display: none;">
+            <label for="file">Unggah gambar:</label>
+            <input type="file" id="file" accept="image/*">
+            <input type="text" id="fileName" placeholder="Tidak ada gambar dipilih" readonly>
+            <button type="button" id="fileMock">Select File</button>
+        </div>
+
+        <div class="input-group" style="display: none;">
+            <label for="confidence">Confidence:</label>
+            <input type="number" id="confidence" placeholder="Enter confidence level (0.0 - 1.0)">
+        </div>
+
+        <div class="input-group" style="display: none;">
+            <label for="overlap">Overlap:</label>
+            <input type="number" id="overlap" placeholder="Enter overlap level (0.0 - 1.0)">
+        </div>
+
+        <div class="input-group">
+            <label>Format:</label>
+            <div id="format">
+                <div class="bttn active" data-value="json" id="jsonButton" style="display: none;">JSON</div>
+                <div class="bttn" data-value="image" id="imageButton">Gambar</div>
+            </div>
+        </div>
+
+        <!-- Hidden Labels (On/Off) and Stroke sections, along with titles -->
+        <div class="input-group" id="imageOptions" style="display: none;">
+            <label>Labels:</label>
+            <div id="labels">
+                <div class="bttn" data-value="on">On</div>
+                <div class="bttn active" data-value="off">Off</div>
+            </div>
+
+            <label>Stroke:</label>
+            <div id="stroke">
+                <div class="bttn active" data-value="1">1</div>
+                <div class="bttn" data-value="2">2</div>
+                <div class="bttn" data-value="3">3</div>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>Metode:</label>
+            <div id="method">
+                <div class="bttn active" data-value="url" style="display: none;">URL</div>
+                <div class="bttn" data-value="upload" id="computerButton">Post</div>
+            </div>
+        </div>
+
+        <button type="submit">Deteksi</button>
+    </form>
+
+    <div id="resultContainer">
+        <h2>Result:</h2>
+        <div id="output"></div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        // Hide Labels and Stroke sections when Image button is clicked
+        $('#imageButton').click(function() {
+            $('#labels').hide();
+            $('#stroke').hide();
+            $('#imageOptions label').hide();
+        });
+    });
+</script>
+</body>
+</html>

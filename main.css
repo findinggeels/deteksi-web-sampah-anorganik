@@ -1,0 +1,82 @@
+/* main.css */
+
+/* Mengatur tampilan awal saat halaman sedang loading */
+body.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+/* Menyembunyikan elemen utama saat loading */
+body.loading #firstPart,
+body.loading #secondPart {
+    display: none;
+}
+
+/* Mengatur tampilan setelah selesai loading */
+body:not(.loading) #firstPart,
+body:not(.loading) #secondPart {
+    display: block;
+    text-align: center;
+}
+
+/* Gaya untuk elemen video */
+#video {
+    width: 100%;
+    height: auto;
+    max-width: 640px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Kanvas mengikuti ukuran video */
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 8px;
+    pointer-events: none; /* Agar tidak menghalangi interaksi dengan video */
+}
+
+/* Mengatur tampilan FPS */
+#fps {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+/* Gaya untuk tombol */
+button {
+    font-size: 16px;
+    padding: 10px 20px;
+    margin-top: 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:active {
+    background-color: #3e8e41;
+}
+
+/* Mengatur tata letak elemen bagian kedua */
+#secondPart {
+    margin-top: 20px;
+}
